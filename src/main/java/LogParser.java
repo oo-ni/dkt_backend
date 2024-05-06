@@ -9,9 +9,11 @@ public class LogParser {
             String[] section = logData.split("\\]\\[");                             // 로그 항목 분할
 
             // 섹션별 대괄호 제거
-            String statusCode = section[0].replace("[", "");
+            String statusCodeString = section[0].replace("[", "");
             String url = section[1];
             String browser = section[2].replace("]", "");
+
+            int statusCode = Integer.parseInt(statusCodeString);                            // 상태 코드 정수형으로 파싱
 
             // API Key, API Service ID 추출
             String[] urlPart = url.split("\\?apikey=");
