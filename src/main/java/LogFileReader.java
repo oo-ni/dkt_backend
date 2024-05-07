@@ -5,7 +5,8 @@ import java.util.*;
 public class LogFileReader {
     public static List<String> readLogFile(String inputFile) {
         List<String> logLineList = new ArrayList<>();                                  // logLines에 각 라인 저장 후 Arraylist로 반환
-        try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {   // BuffererReader readLine으로 읽어오기
+        // BufferedReader readLine으로 읽어오기
+        try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
             String line;
             while ((line = br.readLine()) != null) {
                 logLineList.add(line);
