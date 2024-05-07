@@ -1,9 +1,8 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class LogParser {
     public static List<ParsedData> parseLogs(List<String> logDataList) {
-        List<ParsedData> parsedDatas = new ArrayList<>();
+        List<ParsedData> parsedDataList = new ArrayList<>();
 
         for (String logData : logDataList) {
             String[] section = logData.split("\\]\\[");                             // 로그 항목 분할
@@ -15,13 +14,13 @@ public class LogParser {
 
             int statusCode = Integer.parseInt(statusCodeString);                            // 상태 코드 정수형으로 파싱
 
-            // API Key, API Service ID 추출
+            // 인덱싱 활용 API Key, API Service ID 분리
             String[] urlPart = url.split("\\?apikey=");
             String apiServiceId = urlPart[0].replace("http://apis.daum.net/search/", "");
             String apiKey = urlPart[1].split("&")[0];
 
-            parsedDatas.add(new ParsedData(statusCode, apiKey, apiServiceId, browser));     // ParsedData 객체 생성
+            parsedDataList.add(new ParsedData(statusCode, apiKey, apiServiceId, browser));     // ParsedData 객체 생성
         }
-        return parsedDatas;
+        return parsedDataList;
     }
 }
