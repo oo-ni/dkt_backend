@@ -9,21 +9,19 @@ public class LogAnalyzer {
         Map<String, Integer> browserUnit = new HashMap<>();
 
         for (ParsedData parsedData : parsedDataList) {
-            if (parsedData.getStatusCode() == 200) {                                                    // 상태 코드 200 조건
-                // getOrDefault활용 parsedData에서 Key값 가져와서 객체에 put
-                apiKeyUnit.put(
-                        parsedData.getApiKey(),
-                        apiKeyUnit.getOrDefault(parsedData.getApiKey(), 0) + 1
-                );
-                apiServiceIdUnit.put(
-                        parsedData.getApiServiceId(),
-                        apiServiceIdUnit.getOrDefault(parsedData.getApiServiceId(), 0) + 1
-                );
-                browserUnit.put(
-                        parsedData.getBrowser(),
-                        browserUnit.getOrDefault(parsedData.getBrowser(), 0) + 1
-                );
-            }
+            // getOrDefault활용 parsedData에서 Key값 가져와서 객체에 put
+            apiKeyUnit.put(
+                    parsedData.getApiKey(),
+                    apiKeyUnit.getOrDefault(parsedData.getApiKey(), 0) + 1
+            );
+            apiServiceIdUnit.put(
+                    parsedData.getApiServiceId(),
+                    apiServiceIdUnit.getOrDefault(parsedData.getApiServiceId(), 0) + 1
+            );
+            browserUnit.put(
+                    parsedData.getBrowser(),
+                    browserUnit.getOrDefault(parsedData.getBrowser(), 0) + 1
+            );
         }
 
         // 최다 호출 API Key - mostCalledApiKey
@@ -37,6 +35,7 @@ public class LogAnalyzer {
                 .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())                       // value 기준으로 정렬
                 .limit(3)                                                                       // Top 3
                 .collect(Collectors.toList());                                                          // List로 stream 변환
+
         // 웹 브라우저 별 사용 비율 - usageBrowserRatios
         int totalBrowserCalls = browserUnit.values().stream()                                           // values(호출 횟수) stream 생성
                 .mapToInt(Integer::intValue)                                                            // 정수형 매핑
