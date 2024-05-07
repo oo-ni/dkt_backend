@@ -40,10 +40,13 @@ public class LogAnalyzer {
         int totalBrowserCalls = browserUnit.values().stream()                                           // values(호출 횟수) stream 생성
                 .mapToInt(Integer::intValue)                                                            // 정수형 매핑
                 .sum();                                                                                 // 전체 브라우저 호출 횟수
-        Map<String, String> BrowserRatios = browserUnit.entrySet().stream()                             // entrySet(key(browser), value(호출 횟수)) stream 생성
+        Map<String, String> browserRatios = browserUnit.entrySet().stream()                             // entrySet(key(browser), value(호출 횟수)) stream 생성
                 .collect(Collectors.toMap(Map.Entry::getKey, value                                      // key 매핑해서 Map으로 stream 변환
                         -> String.format("%d%%", (value.getValue() * 100) / totalBrowserCalls)));       // value 설정(백분위로 포매팅)
+        List<Map.Entry<String, String>> sortedBrowserRatios = browserRatios.entrySet().stream()         // entrySet(key(browser), value(호출 비율)) stream 생성
+                .sorted(Map.Entry.<String, String>comparingByValue().reversed())                        // value 기준으로 정렬
+                .collect(Collectors.toList());
 
-        return new AnalyzedData(mostCalledApiKey, topApiServiceIds, BrowserRatios);
+        return new AnalyzedData(mostCalledApiKey, topApiServiceIds, sortedBrowserRatios);
     }
 }

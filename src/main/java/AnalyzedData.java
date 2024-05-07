@@ -2,9 +2,9 @@ import java.util.*;
 public class AnalyzedData {
     private final String mostCalledApiKey;
     private final List<Map.Entry<String, Integer>> topApiServiceIds;
-    private final Map<String, String> browserRatios;
+    private final List<Map.Entry<String, String>> browserRatios;
 
-    public AnalyzedData(String mostCalledApiKey, List<Map.Entry<String, Integer>> topServiceIds, Map<String, String> browserRatios) {
+    public AnalyzedData(String mostCalledApiKey, List<Map.Entry<String, Integer>> topServiceIds, List<Map.Entry<String, String>> browserRatios) {
         this.mostCalledApiKey = mostCalledApiKey;
         this.topApiServiceIds = topServiceIds;
         this.browserRatios = browserRatios;
@@ -18,7 +18,7 @@ public class AnalyzedData {
         return topApiServiceIds;
     }
 
-    public Map<String, String> getBrowserRatios() {
+    public List<Map.Entry<String, String>> getBrowserRatios() {
         return browserRatios;
     }
 }

@@ -12,7 +12,7 @@ public class LogFileWriter {
                 bw.write(entry.getKey() + " : " + entry.getValue() + "\n");
             }
             bw.write("\n웹브라우저별 사용 비율\n");
-            for (Map.Entry<String, String> entry : result.getBrowserRatios().entrySet()) {
+            for (Map.Entry<String, String> entry : result.getBrowserRatios()) {
                 bw.write(entry.getKey() + " : " + entry.getValue() + "\n");
             }
         }
