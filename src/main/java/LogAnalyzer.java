@@ -36,7 +36,7 @@ public class LogAnalyzer {
                 .limit(3)                                                                       // Top 3
                 .collect(Collectors.toList());                                                          // List로 stream 변환
 
-        // 웹 브라우저 별 사용 비율 - usageBrowserRatios
+        // 웹 브라우저 별 사용 비율 - sortedBrowserRatios
         int totalBrowserCalls = browserUnit.values().stream()                                           // values(호출 횟수) stream 생성
                 .mapToInt(Integer::intValue)                                                            // 정수형 매핑
                 .sum();                                                                                 // 전체 브라우저 호출 횟수
