@@ -4,9 +4,9 @@ public class AnalyzedData {
     private final List<Map.Entry<String, Integer>> topApiServiceIds;
     private final List<Map.Entry<String, String>> browserRatios;
 
-    public AnalyzedData(String mostCalledApiKey, List<Map.Entry<String, Integer>> topServiceIds, List<Map.Entry<String, String>> browserRatios) {
+    public AnalyzedData(String mostCalledApiKey, List<Map.Entry<String, Integer>> topApiServiceIds, List<Map.Entry<String, String>> browserRatios) {
         this.mostCalledApiKey = mostCalledApiKey;
-        this.topApiServiceIds = topServiceIds;
+        this.topApiServiceIds = topApiServiceIds;
         this.browserRatios = browserRatios;
     }
 
